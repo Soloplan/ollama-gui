@@ -36,7 +36,12 @@ onMounted(() => {
   refreshModels().then(async () => {
     if (!activeChat.value?.model) {
       await initialize()
-      await switchModel(availableModels.value[0].name)
+      if (availableModels.value.length > 1) {
+        const model = availableModels.value.find(m => m.name.startsWith("mixtral")) ?? availableModels.value[0]
+        await switchModel(model.name)
+      } else if (availableModels.value.length == 1) {
+        await switchModel(availableModels.value[0].name)
+      }
     }
   })
 })
