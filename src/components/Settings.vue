@@ -3,9 +3,9 @@ import { IconLayoutSidebarRightCollapse } from '@tabler/icons-vue'
 import ToggleInput from './Inputs/ToggleInput.vue'
 import TextInput from './Inputs/TextInput.vue'
 import {
-  baseUrl,
+  // baseUrl,
   debugMode,
-  gravatarEmail,
+  // gravatarEmail,
   isSettingsOpen,
   toggleSettingsPanel,
 } from '../services/appConfig.ts'
@@ -36,9 +36,9 @@ import {
           <ToggleInput label="Enable debug mode" v-model="debugMode" />
         </div>
 
-        <TextInput label="Base URL" v-model="baseUrl" />
+        <!--<TextInput label="Base URL" v-model="baseUrl" />
 
-        <TextInput label="Gravatar Email" v-model="gravatarEmail" />
+        <TextInput label="Gravatar Email" v-model="gravatarEmail" />-->
 
         <div v-if="false">
           <div>
