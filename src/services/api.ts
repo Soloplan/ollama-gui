@@ -127,6 +127,8 @@ export const useApi = () => {
     request: GenerateCompletionRequest,
     onDataReceived: (data: GenerateCompletionResponse) => void,
   ): Promise<GenerateCompletionResponse[]> => {
+    request.options ??= {}
+    request.options["num_thread"] ??= 2
     const res = await fetch(getApiUrl('/generate'), {
       method: 'POST',
       headers: {
