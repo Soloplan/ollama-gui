@@ -58,7 +58,7 @@ const onNewChat = () => {
           </span>
           <span class="text-xs leading-none text-zinc-500 dark:text-zinc-400">
             {{
-              chat.createdAt.toLocaleDateString('no', {
+              chat.createdAt.toLocaleDateString(undefined, {
                 day: '2-digit',
                 month: 'short',
                 weekday: 'long',
