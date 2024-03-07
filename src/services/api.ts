@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { baseUrl } from './appConfig.ts'
-import { Message } from './database.ts'
+import ndjsonStream from "can-ndjson-stream"
 
 export type GenerateCompletionRequest = {
   model: string
@@ -142,7 +142,7 @@ export const useApi = () => {
       throw new Error('Network response was not ok')
     }
 
-    const reader = res.body?.getReader()
+    const reader = ndjsonStream(res.body).getReader()
     let results: GenerateCompletionResponse[] = []
 
     if (reader) {
@@ -152,9 +152,7 @@ export const useApi = () => {
           break
         }
 
-        const chunk = new TextDecoder().decode(value)
-        const parsedChunk: GenerateCompletionPartResponse = JSON.parse(chunk)
-
+        const parsedChunk: GenerateCompletionPartResponse = value
         onDataReceived(parsedChunk)
         results.push(parsedChunk)
       }
